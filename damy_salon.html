@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damy Salon·Spa | Estilo & Arte en Cochabamba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #5C1A1A;
+            --cream: #F5ECD7;
+            --gold: #C9A84C;
+            --bg-dark: #0D0D0D;
+            --text-muted: rgba(245, 236, 215, 0.7);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(201, 168, 76, 0.2);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--cream);
+            font-family: 'Jost', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.7)), 
+                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInHero 1.5s forwards ease-out;
+        }
+
+        @keyframes fadeInHero {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            margin-bottom: 0.5rem;
+            color: var(--cream);
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--burgundy);
+            color: var(--cream);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border: 1px solid var(--burgundy);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: transparent;
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Nosotros */
+        #nosotros {
+            background-color: #121212;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card:hover {
+            background: rgba(92, 26, 26, 0.1);
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--cream);
+        }
+
+        /* Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+        }
+
+        /* Testimonios */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .stars {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .client-name {
+            display: block;
+            margin-top: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: var(--gold);
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        /* Reservar Section */
+        #reservar {
+            background: linear-gradient(rgba(92, 26, 26, 0.8), rgba(13, 13, 13, 0.9)), 
+                        url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .booking-content h2 {
+            color: var(--cream);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: var(--bg-dark);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--gold);
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            animation: pulse 2s infinite;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--bg-dark);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for single page mobile */
+            .hero-title { font-size: 3rem; }
+            .section-title { font-size: 2.5rem; }
+            .booking-content h2 { font-size: 2.5rem; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">Damy Salon·Spa</a>
+            <div class="nav-links">
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#galeria">Galería</a>
+                <a href="#reservar">Reservar</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Damy Salon·Spa</h1>
+                <p class="hero-tagline">Donde el estilo se convierte en arte</p>
+                <a href="https://wa.me/59176404787" class="btn" target="_blank">Reservar Ahora</a>
+            </div>
+        </section>
+
+        <!-- Nosotros Section -->
+        <section id="nosotros">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Nuestra Esencia</h2>
+                </div>
+                <div class="about-text">
+                    <p>En Damy Salon·Spa, cada visita es una experiencia pensada para ti. Combinamos técnica, pasión y los mejores productos para realzar tu belleza natural. Ubicados en el corazón de Cochabamba, somos tu destino de confianza para lucir y sentirte extraordinaria.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Section -->
+        <section id="servicios">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Servicios Exclusivos</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Peinados & Estilismo</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Balayage</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Blow Dry</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Depilación Corporal</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Tratamiento Rizos</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Hidratación Capilar</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Corte Infantil</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Manicure</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Pedicure</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Permanente</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Alisado & Keratina</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Tratamientos Capilares Personalizados</h3></div>
+                    <div class="service-card"><span class="service-icon">✧</span><h3>Tratamientos Anticaída</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería Section -->
+        <section id="galeria">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Galería</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Cabello"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1632345033840-202d68965851?auto=format&fit=crop&w=600&q=80" alt="Uñas"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=80" alt="Maquillaje"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519415510236-8559b1985a25?auto=format&fit=crop&w=600&q=80" alt="Spa"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Peinado"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80" alt="Novia"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios Section -->
+        <section id="testimonios">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Experiencias</h2>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"El mejor salón de Cochabamba. Mi balayage quedó perfecto y la atención es de primer nivel. ¡Súper recomendado!"</p>
+                        <span class="client-name">— María Fernanda G.</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"Un ambiente de lujo y calidez. Me hice un tratamiento facial y salí renovada. Gracias Damy por tu arte."</p>
+                        <span class="client-name">— Claudia R.</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"Excelente servicio de uñas acrílicas. Muy detallistas y profesionales. Mi lugar favorito para consentirme."</p>
+                        <span class="client-name">— Andrea M.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservar Section -->
+        <section id="reservar">
+            <div class="container reveal">
+                <div class="booking-content">
+                    <h2>¿Lista para tu transformación?</h2>
+                    <p>Agenda tu cita directamente por WhatsApp — rápido y sin complicaciones.</p>
+                    <a href="https://wa.me/59176404787" class="btn" target="_blank">Agendar por WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 Damy Salon·Spa — Belleza & Bienestar en Cochabamba</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/59176404787" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.7z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky Navbar background adjustment on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.padding = '1rem 0';
+                nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
+            } else {
+                nav.style.padding = '1.5rem 0';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
